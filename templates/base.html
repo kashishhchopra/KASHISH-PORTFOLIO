@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ data.personal.name }} - {{ data.personal.title }}{% endblock %}</title>
+    
+    <!-- Meta tags for SEO -->
+    <meta name="description" content="{% block description %}{{ data.personal.tagline }}{% endblock %}">
+    <meta name="author" content="{{ data.personal.name }}">
+    <meta name="keywords" content="{% block keywords %}portfolio, developer, student, computer science, programming, python, java, web development{% endblock %}">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="{{ data.personal.name }} - {{ data.personal.title }}">
+    <meta property="og:description" content="{{ data.personal.tagline }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.url }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Icons (using Unicode symbols and emojis for simplicity) -->
+    <style>
+        .icon-github:before { content: "🔗"; }
+        .icon-linkedin:before { content: "💼"; }
+        .icon-email:before { content: "📧"; }
+        .icon-phone:before { content: "📞"; }
+        .icon-location:before { content: "📍"; }
+        .icon-code:before { content: "💻"; }
+        .icon-education:before { content: "🎓"; }
+        .icon-external:before { content: "🔗"; }
+    </style>
+    
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

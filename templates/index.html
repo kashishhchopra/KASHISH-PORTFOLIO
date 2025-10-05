@@ -1,0 +1,438 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Header -->
+<header class="header">
+    <nav class="nav container">
+        <a href="#home" class="logo">KC</a>
+        
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <a href="#contact" class="cta-btn">Get in Touch</a>
+        
+        <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        
+        <div class="mobile-nav" id="mobile-nav">
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-btn">Get in Touch</a>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>
+            <span class="name-first">{{ data.personal.name.split()[0] }}</span><br>
+            <span class="name-last">{{ data.personal.name.split()[1] }}</span>
+        </h1>
+        <h2>{{ data.personal.title }}</h2>
+        <p>{{ data.personal.tagline }}</p>
+        
+        <div class="location">
+            <span class="icon-location"></span>
+            <span>{{ data.personal.location }}</span>
+        </div>
+        
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-primary">
+                📧 Get in Touch
+            </a>
+            <a href="#about" class="btn-secondary">
+                View My Work
+            </a>
+        </div>
+        
+        <div class="social-links">
+            <a href="https://github.com/kashishhchopra" target="_blank" title="GitHub">🔗</a>
+            <a href="https://www.linkedin.com/in/kashish-chopra-666559356/" target="_blank" title="LinkedIn">💼</a>
+            <a href="mailto:{{ data.personal.email }}" title="Email">📧</a>
+        </div>
+        
+        <div class="scroll-indicator" id="scroll-indicator">⬇</div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">ABOUT ME</h2>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="about-grid">
+            <div>
+                <p class="about-text">{{ data.about.description }}</p>
+                
+                <ul class="highlights">
+                    {% for highlight in data.about.highlights %}
+                    <li>{{ highlight }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+          
+                <div class="stat-card">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">7.48</span>
+                    <span class="stat-label">Current CGPA till 4th sem</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Technologies Learned</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">EXPERIENCE</h2>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="timeline">
+            {% for job in data.experience %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="experience-card">
+                        <h3 class="job-title">{{ job.position }}</h3>
+                        <h4 class="company-name">{{ job.company }}</h4>
+                        
+                        <div class="job-meta">
+                            <span>📅 {{ job.duration }}</span>
+                            <span>📍 {{ job.location }}</span>
+                        </div>
+                        
+                        <p class="job-description">{{ job.description }}</p>
+                        
+                        <div class="achievements">
+                            <h5>Key Achievements:</h5>
+                            <ul>
+                                {% for achievement in job.achievements %}
+                                <li>{{ achievement }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h5 class="mb-4">Technologies:</h5>
+                            <div class="tech-tags">
+                                {% for tech in job.technologies %}
+                                <span class="tech-tag">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">SKILLS</h2>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skills-card">
+                <h3 class="skills-title">Technical Skills</h3>
+                
+                {% for skill in data.skills.technical %}
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">{{ skill.name }}</span>
+                        <span class="skill-level">{{ skill.level }}%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{ skill.level }}%"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div>
+                <div class="skills-card mb-6">
+                    <h3 class="skills-title">Soft Skills</h3>
+                    <div class="soft-skills">
+                        {% for skill in data.skills.soft %}
+                        <div class="soft-skill">{{ skill }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <div class="skills-card">
+                    <h3 class="skills-title">Tools</h3>
+                    <div class="soft-skills">
+                        {% for tool in data.skills.tools %}
+                        <div class="soft-skill">{{ tool }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">PROJECTS</h2>
+            <div class="section-divider"></div>
+            <p style="color: #ccc; font-size: 1.25rem; max-width: 600px; margin: 24px auto 0;">
+                A showcase of my academic projects and practical applications
+            </p>
+        </div>
+        
+        <div class="projects-grid">
+            {% for project in data.projects %}
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-icon">💻</div>
+                    <div class="project-links">
+                        {% if project.github %}
+                        <a href="https://{{ project.github }}" target="_blank" class="project-link">🔗</a>
+                        {% endif %}
+                        {% if project.demo %}
+                        <a href="https://{{ project.demo }}" target="_blank" class="project-link">🚀</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.name }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                    
+                    <div>
+                        <h4 style="color: white; font-weight: 600; margin-bottom: 12px;">Technologies Used:</h4>
+                        <div class="tech-tags">
+                            {% for tech in project.technologies %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center">
+            <p style="color: #999; margin-bottom: 24px;">
+                Want to see more of my work? Check out my GitHub profile for additional projects and contributions.
+            </p>
+            <a href="https://github.com/kashishhchopra" target="_blank" class="btn-primary">
+                🔗 View All Projects on GitHub
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="education-grid">
+            {% for edu in data.education %}
+            <div class="education-card">
+                <div class="education-header">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-details">
+                        <h3>{{ edu.degree }}</h3>
+                        <h4 class="institution-name">{{ edu.institution }}</h4>
+                        <div class="education-meta">
+                            <span>📅 {{ edu.duration }}</span>
+                            {% if edu.gpa %}
+                            <span> • GPA: {{ edu.gpa }}</span>
+                            {% endif %}
+                        </div>
+                        {% if edu.details %}
+                        <div class="education-meta">{{ edu.details }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                {% if edu.coursework %}
+                <div>
+                    <h5 style="color: white; font-weight: 600; margin-bottom: 12px;">
+                        {% if edu.degree.startswith('B.Tech') %}Relevant Coursework:{% else %}Subjects:{% endif %}
+                    </h5>
+                    <div class="coursework">
+                        {% for course in edu.coursework %}
+                        <div class="coursework-item">{{ course }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">CONTACT</h2>
+            <div class="section-divider"></div>
+            <p style="color: #ccc; font-size: 1.25rem; max-width: 600px; margin: 24px auto 0;">
+                Ready to work together? I'd love to hear from you. Let's create something amazing!
+            </p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3 class="skills-title">Get In Touch</h3>
+                
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-info">
+                            <h4>Email</h4>
+                            <a href="mailto:{{ data.personal.email }}">{{ data.personal.email }}</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-info">
+                            <h4>Phone</h4>
+                            <a href="tel:{{ data.personal.phone }}">{{ data.personal.phone }}</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-info">
+                            <h4>Location</h4>
+                            <span style="color: #ccc;">{{ data.personal.location }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="padding-top: 32px; border-top: 1px solid #333;">
+                    <h4 style="color: white; font-weight: 600; margin-bottom: 16px;">Follow Me</h4>
+                    <div class="social-links" style="justify-content: flex-start; margin-bottom: 0;">
+                        <a href="https://github.com/kashishhchopra" target="_blank" title="GitHub">🔗</a>
+                        <a href="https://www.linkedin.com/in/kashish-chopra-666559356/" target="_blank" title="LinkedIn">💼</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 32px; padding-top: 32px; border-top: 1px solid #333;">
+                    <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                        <span style="color: var(--brand-primary); margin-right: 8px;">✓</span>
+                        <span style="color: white; font-weight: 500;">{{ data.contact.availability }}</span>
+                    </div>
+                    <p style="color: #999; font-size: 0.9rem; margin: 0;">{{ data.contact.responseTime }}</p>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h3 class="skills-title">Send Message</h3>
+                
+                <form id="contact-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div class="form-group">
+                            <label class="form-label">Name *</label>
+                            <input type="text" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" name="email" class="form-input" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Subject *</label>
+                        <input type="text" name="subject" class="form-input" placeholder="Project discussion, collaboration, etc." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message *</label>
+                        <textarea name="message" class="form-input form-textarea" placeholder="Tell me about your project..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submit-btn">
+                        📧 Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>{{ data.personal.name }}</h3>
+                <p>{{ data.personal.tagline }}</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div style="color: #999; line-height: 1.8;">
+                    <p>{{ data.personal.email }}</p>
+                    <p>{{ data.personal.phone }}</p>
+                    <p>{{ data.personal.location }}</p>
+                </div>
+                
+                <div class="social-links" style="justify-content: flex-start; margin-top: 16px; margin-bottom: 0;">
+                    <a href="https://github.com/kashishhchopra" target="_blank" title="GitHub">🔗</a>
+                    <a href="https://www.linkedin.com/in/kashish-chopra-666559356/" target="_blank" title="LinkedIn">💼</a>
+                    <a href="mailto:{{ data.personal.email }}" title="Email">📧</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2025 {{ data.personal.name }}. Made with lots of dedication and lots of coffee.</p>
+        </div>
+    </div>
+</footer>
+{% endblock %}
