@@ -12,7 +12,7 @@ portfolio_data = {
         'title': 'B.Tech CSE (AIML) Student',
         'tagline': 'Passionate about coding, problem-solving, and exploring emerging technologies',
         'email': 'kashishchopra2k05@gmail.com',
-        'phone': '+91 95993 73549',
+        'phone': '+91 95xxx xxxxx',
         'location': 'Dwarka, New Delhi',
         'linkedin': 'linkedin.com/in/kashishchopra',
         'github': 'github.com/kashishchopra',
