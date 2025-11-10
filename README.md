@@ -150,4 +150,3 @@ For questions or suggestions about this portfolio:
 
 ---
 
-_Built with ❤️ using Flask and modern web technologies_
